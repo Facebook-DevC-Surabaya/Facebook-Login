@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
+<title>Facebook Login</title>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -11,33 +11,34 @@
     console.log(response);
     if (response.status === 'connected') {
       testAPI();
-    } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
     } else {
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+        'into this app.';
     }
   }
+
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
   }
+
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '264462126927290',
-    cookie     : true,  // enable cookies to allow the server to access
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.5' // use graph api version 2.5
+    appId      : '547353862285214',
+    cookie     : true,  
+    xfbml      : true,  
+    version    : 'v2.8' 
   });
+
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
   });
+
   };
 
+  // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -47,21 +48,22 @@
   }(document, 'script', 'facebook-jssdk'));
 
   function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
+    console.log('Hai!  kami sedang melakukan pengecekan.... ');
     FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+      console.log('Terima kasih : ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Anda sudah Login, <b>' + response.name + '</b>!';
     });
   }
 </script>
-
-
+<center>
+<img src="sby.png"> 
+<br><br><br>
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
+<br><br>
 <div id="status">
 </div>
-
+</center>
 </body>
 </html>
